@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent);
         }
 
-    
+
     }
 
 
@@ -42,8 +42,8 @@ class LoginActivity : AppCompatActivity() {
             editor?.putString(kPassword,truePassword)
             editor?.apply();
 
-            //val intent = Intent(this,HomeActivity::class.java)
-            //startActivity(intent);
+            val intent = Intent(this,HomeActivity::class.java)
+            startActivity(intent);
 
         }else{
             Toast.makeText(this,"Identifiant ou Mot de Passe", Toast.LENGTH_LONG).show()

@@ -1,4 +1,4 @@
-package fr.isen.lopez.socialapplication
+    package fr.isen.lopez.socialapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
