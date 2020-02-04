@@ -34,7 +34,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance()
 
         date_input.setOnFocusChangeListener { view, hasFocus ->
             if(hasFocus) {
@@ -52,13 +52,6 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
-
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-        updateUI(currentUser)
-    }
 
     fun updateUI(account: FirebaseUser?) {
 
@@ -94,7 +87,7 @@ class SignUpActivity : AppCompatActivity() {
 
     public fun createAccount(view: View) {
 
-        val newuser = UserModel()
+        val newuser = WriteData()
         if (input_confirm_password.text.toString() == input_password.text.toString()) {
 
             mAuth?.createUserWithEmailAndPassword(input_email.text.toString(), input_password.text.toString())?.addOnCompleteListener(this) { task ->
@@ -102,11 +95,9 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Inscription", "createUserWithEmail:success")
                     val user = mAuth?.currentUser
-                    Log.d("D", "before")
-                    newuser.Register("deded", input_email.text.toString(), input_familyname.text.toString(), input_surname.text.toString(), date_input.text.toString())
-                    Log.d("D", "middlefrero")
+                    //newuser.Register(user!!.uid, input_email.text.toString(), input_familyname.text.toString(), input_surname.text.toString(), date_input.text.toString())
                     updateUI(user)
-                    Log.d("D", "after")
+
 
                 } else {
                     // If sign in fails, display a message to the user.
