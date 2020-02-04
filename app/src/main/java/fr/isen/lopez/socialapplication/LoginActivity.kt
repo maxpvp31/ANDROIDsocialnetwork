@@ -54,6 +54,9 @@ class LoginActivity : AppCompatActivity() {
         return identifier == trueId && password == truePassword
     }
 
-
+    public fun switchSignUp(view: View){
+        val intent = Intent(this,SignUpActivity::class.java)
+        startActivity(intent);
+    }
 
 }
