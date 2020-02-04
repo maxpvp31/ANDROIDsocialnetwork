@@ -11,9 +11,7 @@ class UserModel {
     var photo: String? = ""
     var posts : ArrayList<Int>? = ArrayList<Int>()
 
-   fun PostByUser(posts : ArrayList<Int>){
-        this.posts =  posts
-    }
+
 
     fun InitUser(email: String?, nom: String?, prenom: String?, ddnaissance: String?, photo: String?){
 
@@ -26,13 +24,14 @@ class UserModel {
     }
 
 
-    fun newUser( email: String?, nom: String?, prenom : String?, ddnaissance: String?) {
+    fun Register( id: String, email: String?, nom: String?, prenom : String?, ddnaissance: String?) {
 
-        val dataPost = database.getReference("Posts")
-        val newId = dataPost.push().key.toString()
+        val dataPost = database.getReference("Users")
         val post = InitUser(email, nom, prenom, ddnaissance, null)
-        dataPost.child(newId).setValue(post)
+        dataPost.child(id).setValue(post)
     }
-
+    fun PostByUser(posts : ArrayList<Int>){
+        this.posts =  posts
+    }
 
 }

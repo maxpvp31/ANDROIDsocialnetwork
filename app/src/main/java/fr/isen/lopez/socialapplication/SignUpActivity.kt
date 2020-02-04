@@ -61,7 +61,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     fun updateUI(account: FirebaseUser?) {
+
         if (account != null) {
+
             Toast.makeText(this, "U Signed In successfully", Toast.LENGTH_LONG).show()
             startActivity(Intent(this, HomeActivity::class.java))
         } else {
@@ -91,13 +93,21 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     public fun createAccount(view: View) {
+
+        val newuser = UserModel()
         if (input_confirm_password.text.toString() == input_password.text.toString()) {
+
             mAuth?.createUserWithEmailAndPassword(input_email.text.toString(), input_password.text.toString())?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Inscription", "createUserWithEmail:success")
                     val user = mAuth?.currentUser
+                    Log.d("D", "before")
+                    newuser.Register("deded", input_email.text.toString(), input_familyname.text.toString(), input_surname.text.toString(), date_input.text.toString())
+                    Log.d("D", "middlefrero")
                     updateUI(user)
+                    Log.d("D", "after")
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("Inscription", "createUserWithEmail:failure", task.exception)
