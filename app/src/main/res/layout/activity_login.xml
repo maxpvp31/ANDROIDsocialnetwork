@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"><![CDATA[
+    android:background="@color/white"
     tools:context=".LoginActivity">
 
-    ]]>
+
 
     <TextView
         android:id="@+id/textView"
@@ -84,4 +84,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
+
+    <Button
+        android:id="@+id/button_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#EC2E20"
+        android:text="@string/sign_up"
+        android:textColor="#FFFFFF"
+        android:onClick="switchSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_validate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

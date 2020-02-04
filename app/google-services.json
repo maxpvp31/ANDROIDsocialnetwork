@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "581462068226-1phjs3pqhog966i18iemmf4045lggdm8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.isen.lopez.socialapplication",
+            "certificate_hash": "11050dcef06bbb052a6133e735fdcea41781f2b2"
+          }
+        },
+        {
           "client_id": "581462068226-3jlbn41r3tlgrmoe9n83nueofekkc5pp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
