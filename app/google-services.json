@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "581462068226",
+    "firebase_url": "https://androidsocialproject-444bb.firebaseio.com",
+    "project_id": "androidsocialproject-444bb",
+    "storage_bucket": "androidsocialproject-444bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581462068226:android:a03bc114651f8eeb5eeb1b",
+        "android_client_info": {
+          "package_name": "fr.isen.lopez.socialapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581462068226-3jlbn41r3tlgrmoe9n83nueofekkc5pp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.isen.lopez.socialapplication",
+            "certificate_hash": "e51830e1b16a6f0326cc6cbfb570be34f302270e"
+          }
+        },
+        {
+          "client_id": "581462068226-i5neulgh6lg60t6fn7u18rbcg8qkrh2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC72q40ODSlW_clugCY23R1X4KR4dh_gDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581462068226-i5neulgh6lg60t6fn7u18rbcg8qkrh2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
