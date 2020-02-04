@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SocialApplication</string>
+    <string name="connection">Connexion</string>
+    <string name="validate">valider</string>
+    <string name="password">Mot de Passe</string>
+    <string name="user">Identifiant</string>
+
 </resources>
