@@ -5,5 +5,9 @@
     <string name="password">Mot de Passe</string>
     <string name="user">Identifiant</string>
     <string name="sign_up">s\'inscrire</string>
+    <string name="confirm_password">Confirmer Mot de passe</string>
+    <string name="surname">Prénom</string>
+    <string name="name">Nom</string>
+    <string name="birth_date">Date de naissance</string>
 
 </resources>
