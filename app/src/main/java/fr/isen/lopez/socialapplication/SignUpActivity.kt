@@ -95,7 +95,7 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Inscription", "createUserWithEmail:success")
                     val user = mAuth?.currentUser
-                    //newuser.Register(user!!.uid, input_email.text.toString(), input_familyname.text.toString(), input_surname.text.toString(), date_input.text.toString())
+                    newuser.Register(user!!.uid, input_email.text.toString(), input_familyname.text.toString(), input_surname.text.toString(), date_input.text.toString())
                     updateUI(user)
 
 
