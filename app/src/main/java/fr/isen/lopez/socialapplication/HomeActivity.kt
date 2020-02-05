@@ -13,15 +13,15 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         val postList = ArrayList<PostModel>()
-
-        val post1 = PostModel("@string/post_example","","",null,null)
-        val post2 = PostModel("Fulltg","","",null,null)
-        val post3 = PostModel("Fulltg","","",null,null)
-        val post4 = PostModel("Fulltg","","",null,null)
-        val post5 = PostModel("Fulltg","","",null,null)
-        val post6 = PostModel("Fulltg","","",null,null)
-        val post7 = PostModel("Fulltg","","",null,null)
-        val post8 = PostModel("Fulltg","","",null,null)
+        val temporaryText: String = getString(R.string.post_example)
+        val post1 = PostModel(temporaryText,"","",null,null)
+        val post2 = PostModel(temporaryText,"","",null,null)
+        val post3 = PostModel(temporaryText,"","",null,null)
+        val post4 = PostModel(temporaryText,"","",null,null)
+        val post5 = PostModel(temporaryText,"","",null,null)
+        val post6 = PostModel(temporaryText,"","",null,null)
+        val post7 = PostModel(temporaryText,"","",null,null)
+        val post8 = PostModel(temporaryText,"","",null,null)
 
 
 
