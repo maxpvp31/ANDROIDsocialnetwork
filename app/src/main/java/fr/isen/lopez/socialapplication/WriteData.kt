@@ -29,6 +29,7 @@ class WriteData {
         val post = UserModel(email, nom, prenom, ddnaissance, null)
 
         dataPost.child(id).setValue(post)
+        Log.d("OK", "Passé dataPost")
     }
 
     fun ReadPosts() {
