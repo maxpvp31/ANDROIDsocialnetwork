@@ -1,57 +1,86 @@
 package fr.isen.lopez.socialapplication
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 class WriteData {
     companion object {
         private const val TAG = "Activity"
     }
 
     val database = FirebaseDatabase.getInstance()
+    var newIDpost : String = ""
+    fun getnewIDpost(): String{
+        return this.newIDpost
+    }
+    fun  setnewIDpost(newIDpost : String){
+        this.newIDpost = newIDpost
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun DateCurrent() : String{
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formatted = current.format(formatter)
+        return formatted
+    }
 
-    fun writeNewPost( date: String?, text: String?, img : String?) {
+    fun writeNewPost( date: String?, text: String?, img : String?, user_id : String?) {
 
         val dataPost = database.getReference("Posts")
         val newId = dataPost.push().key.toString()
-
-        val post = PostModel(date, text, img, null, null)
+        setnewIDpost(newId)
+        val post = PostModel(text, img, date, user_id,null, null)
         dataPost.child(newId).setValue(post)
+
+
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun PutNewLike( user_id: String?, post_id: String?, type : Int?) {
+
+        val dataPost = database.getReference("Likes")
+        val newId = dataPost.push().key.toString()
+
+        val formatted = DateCurrent()
+        val like = LikePostModel(user_id, post_id, type, formatted )
+        dataPost.child(newId).setValue(like)
+
+
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun writeNewComment( text: String?, id_user: String?, id_post : String?) {
+
+        val dataPost = database.getReference("Comments")
+        val newId = dataPost.push().key.toString()
+
+        val formatted = DateCurrent()
+        val comment = CommentModel(text, id_user, id_post, formatted)
+        dataPost.child(newId).setValue(comment)
     }
 
 
-    fun Register( id: String, email: String?, nom: String?, prenom : String?, ddnaissance: String?) {
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun Register(id: String, email: String?, nom: String?, prenom : String?, ddnaissance: String?) {
+       val formatted = DateCurrent()
+        val  posts : ArrayList<String?>? = ArrayList<String?>()
+      writeNewPost("Salut je suis "+ nom +" . Je suis nouveau sur ce réseau !", "",formatted, id)
+        val idPost : String = getnewIDpost()
+        posts!!.add(idPost)
 
         val dataPost = database.getReference("Users")
-        val post = UserModel(email, nom, prenom, ddnaissance, null)
+        val user = UserModel(email, nom, prenom, ddnaissance, null, posts,formatted )
 
-        dataPost.child(id).setValue(post)
-        Log.d("OK", "Passé dataPost")
-    }
-
-    fun ReadPosts() {
-
-        val myRef = database.getReference("Posts")
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                for(value in dataSnapshot.children ) {
-
-                    Log.d(WriteData.TAG, "Value is: ${value}")
-                }
-
-
-            }
-            override fun onCancelled(error: DatabaseError) {
-
-                Log.w(WriteData.TAG, "Failed to read value.", error.toException())
-            }
-        })
+        dataPost.child(id).setValue(user)
 
     }
+
+
 
     
 }
