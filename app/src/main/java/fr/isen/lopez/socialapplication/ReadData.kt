@@ -42,9 +42,9 @@ class ReadData {
                 val posts : ArrayList<PostModel>  =  ArrayList<PostModel>()
                 for(value in dataSnapshot.children ) {
 
-                    val post = value.getValue(PostModel::class.java)
-                    Log.d(ReadData.TAG, "Value is: ${post}")
-                    posts.add(post!!)
+                  //  val post = value.getValue(PostModel::class.java)
+                  //  Log.d(ReadData.TAG, "Value is: ${post}")
+                 //   posts.add(post!!)
 
                 }
                 Log.d(ReadData.TAG, "Value is: ${posts}")

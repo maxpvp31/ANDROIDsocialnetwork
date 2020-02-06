@@ -39,12 +39,12 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-   /* public override fun onStart() {
+    public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mAuth.currentUser
         updateUI(currentUser)
-    }*/
+    }
 
     fun updateUI(account: FirebaseUser?) {
         if (account != null) {
@@ -53,6 +53,10 @@ class LoginActivity : AppCompatActivity() {
         } else {
         }
     }
+
+  //  public fun show_password_now(Show : bool){
+     //   editText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+    //}
 
     public fun switchPage(view: View){
             mAuth.signInWithEmailAndPassword(usernameChild.text.toString(), editPassword.text.toString())
