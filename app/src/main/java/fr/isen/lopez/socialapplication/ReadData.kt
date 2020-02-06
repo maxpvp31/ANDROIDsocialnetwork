@@ -34,17 +34,17 @@ class ReadData {
     fun CommentsbyPosts(post_id : String?){
     }
 
-    fun ReadPosts() {
-
+    fun ReadPosts() : ArrayList<PostModel>  {
+        val posts : ArrayList<PostModel>  =  ArrayList<PostModel>()
         val myRef = database.getReference("Posts")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val posts : ArrayList<PostModel>  =  ArrayList<PostModel>()
+
                 for(value in dataSnapshot.children ) {
 
-                  //  val post = value.getValue(PostModel::class.java)
-                  //  Log.d(ReadData.TAG, "Value is: ${post}")
-                 //   posts.add(post!!)
+                   val post = value.getValue(PostModel::class.java)
+
+                  posts.add(post!!)
 
                 }
                 Log.d(ReadData.TAG, "Value is: ${posts}")
@@ -56,6 +56,7 @@ class ReadData {
             }
         })
 
+        return posts
 
     }
 
