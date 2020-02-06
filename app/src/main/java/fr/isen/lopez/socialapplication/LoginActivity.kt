@@ -55,7 +55,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     public fun switchPage(view: View){
-        if(canLog(usernameChild.text.toString(), editPassword.text.toString())){
             mAuth.signInWithEmailAndPassword(usernameChild.text.toString(), editPassword.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -75,14 +74,10 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        }else{
-            Toast.makeText(this,"Identifiant ou Mot de Passe non remplit", Toast.LENGTH_LONG).show()
-        }
+
     }
 
-    public fun canLog(identifier: String, password: String): Boolean{
-        return identifier == trueId && password == truePassword
-    }
+
 
     public fun switchSignUp(view: View){
         val intent = Intent(this,SignUpActivity::class.java)
