@@ -25,7 +25,7 @@ class WriteData {
     @RequiresApi(Build.VERSION_CODES.O)
     fun DateCurrent() : String{
         val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")
         val formatted = current.format(formatter)
         return formatted
     }
@@ -35,7 +35,11 @@ class WriteData {
         val dataPost = database.getReference("Posts")
         val newId = dataPost.push().key.toString()
         setnewIDpost(newId)
-        val post = PostModel(text, img, date, user_id,null, null)
+        val comment : ArrayList<Int> =  ArrayList<Int>()
+        comment.add(0)
+        val like : ArrayList<String> =  ArrayList<String>()
+        like.add("0")
+        val post = PostModel(text, img, date, user_id,comment, like)
         dataPost.child(newId).setValue(post)
 
 
@@ -68,7 +72,7 @@ class WriteData {
     @RequiresApi(Build.VERSION_CODES.O)
     fun Register(id: String, email: String?, nom: String?, prenom : String?, ddnaissance: String?) {
        val formatted = DateCurrent()
-        val  posts : ArrayList<String?>? = ArrayList<String?>()
+        val  posts : ArrayList<String>? = ArrayList<String>()
       writeNewPost("Salut je suis "+ nom +". Je suis nouveau sur ce réseau !", "",formatted, id)
         val idPost : String = getnewIDpost()
         posts!!.add(idPost)

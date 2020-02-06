@@ -1,27 +1,16 @@
 package fr.isen.lopez.socialapplication
 
-
-class PostModel{
-
+import com.google.firebase.database.PropertyName
 
 
+data class PostModel(
+    @PropertyName("text") val text: String?,
+    @PropertyName("img") val img: String?,
+    @PropertyName("date") val date : String?,
+    @PropertyName("user_id") val user_id :  String?,
+    @PropertyName("comments") val comments : ArrayList<Int>?,
+    @PropertyName("likes") val likes : ArrayList<String>?)
+ {
+     constructor() : this("","","","",null,null)
+ }
 
-    var text: String? = ""
-    var img: String? = ""
-    var date : String?=""
-    var user_id :  String?=""
-    var comments : ArrayList<Int>? = ArrayList<Int>()
-    var likes : ArrayList<String>? = ArrayList<String>()
-
-constructor(text: String?, img :String?, date : String?,user_id :  String?, comments : ArrayList<Int>?, likes : ArrayList<String>? ){
-    this.text = text
-    this.img = img
-    this.date = date
-    this.comments = comments
-    this.likes =likes
-    this.user_id = user_id
-
-}
-
-
-}

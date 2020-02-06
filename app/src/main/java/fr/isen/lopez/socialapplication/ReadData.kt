@@ -12,42 +12,39 @@ class ReadData {
     }
     val database = FirebaseDatabase.getInstance()
 
-  // fun FindUserOnPost(post_id: String?): String?{
 
 
-   //}
-    //  fun FindUserOnComment(comment_id : String?) : String?{
-   //  }
-    //  fun FindCommentOnPosts(post_id : String?) : String?{
-   // }
-   // fun FindPostsOnComment(comment_id : String?) : String?{
-   // }
-    //    fun FindPostsOnComment(comment_id : String?) : String?{
-   //    }
-    //   fun PostsbyUser(user_id : String?){
-   //  }
-    //     fun LikebyUser(user_id : String?){
-    //     }
 
-    fun CommentsbyUser(user_id : String?){
-    }
-    fun CommentsbyPosts(post_id : String?){
-    }
-
-    fun ReadPosts() {
-
+    fun ReadPosts() :  ArrayList<PostModel> {
+        val posts : ArrayList<PostModel>  =  ArrayList<PostModel>()
         val myRef = database.getReference("Posts")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val posts : ArrayList<PostModel>  =  ArrayList<PostModel>()
                 for(value in dataSnapshot.children ) {
-
-                    val post = value.getValue(PostModel::class.java)
-                    Log.d(ReadData.TAG, "Value is: ${post}")
+                    val post: PostModel? = value.getValue(PostModel::class.java)
                     posts.add(post!!)
-
                 }
-                Log.d(ReadData.TAG, "Value is: ${posts}")
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+
+return posts
+    }
+
+
+/*    fun ReadUsers() :  ArrayList<ReadUsers> {
+        val users : ArrayList<ReadUsers>  =  ArrayList<ReadUsers>()
+        val myRef = database.getReference("Posts")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for(value in dataSnapshot.children ) {
+                    val post : PostModel? = value.getValue(PostModel::class.java)
+                    posts.add(post!!)
+                }
+
 
             }
             override fun onCancelled(error: DatabaseError) {
@@ -56,11 +53,12 @@ class ReadData {
             }
         })
 
+        return posts
+    }*/
 
-    }
+
 
     fun ReadPostByUser(user_id: String?){
-        val myRef = database.getReference("Users")
 
 
     }
@@ -68,3 +66,4 @@ class ReadData {
 
 
 }
+

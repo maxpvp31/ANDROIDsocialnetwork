@@ -1,24 +1,14 @@
 package fr.isen.lopez.socialapplication
 
+import com.google.firebase.database.PropertyName
 
 
-class CommentModel {
-
-    var text : String? = ""
-    var  id_user : String? = ""
-    var id_post : String? = ""
-    var date_added : String? = ""
-
-
-
-    constructor( text: String?,  id_user: String?,  id_post: String?, date_added : String?){
-
-        this.text = text
-        this.id_user = id_user
-        this.id_post = id_post
-        this.date_added = date_added
-    }
-
-
-
+data class CommentModel(
+    @PropertyName("text") val text: String?,
+    @PropertyName("id_user") val id_user: String?,
+    @PropertyName("id_post") val id_post : String?,
+    @PropertyName("date_added") val date_added :  String?)
+{
+    constructor() : this("","","","")
 }
+

@@ -1,32 +1,16 @@
 package fr.isen.lopez.socialapplication
 
+import com.google.firebase.database.PropertyName
 
 
-class UserModel {
-
-    var email : String? = ""
-    var  nom : String? = ""
-    var prenom : String? = ""
-    var ddnaissance :String? = ""
-    var photo: String? = ""
-    var posts : ArrayList<String?>? = ArrayList<String?>()
-    var date_added : String? =""
-
-
-    constructor( email: String?,  nom: String?,  prenom: String?,  ddnaissance: String?,  photo: String?, posts : ArrayList<String?>?, date_added : String?){
-
-        this.email = email
-        this.nom = nom
-        this.prenom = prenom
-        this.ddnaissance = ddnaissance
-        this.photo = photo
-        this.posts = posts
-        this.date_added = date_added
-    }
-
-
-
-
-
-
+data class UserModel(
+    @PropertyName("email") val email: String?,
+    @PropertyName("nom") val nom: String?,
+    @PropertyName("prenom") val prenom : String?,
+    @PropertyName("ddnaissance") val ddnaissance :  String?,
+    @PropertyName("photo") val photo :  String?,
+    @PropertyName("posts") val posts : ArrayList<String>?,
+    @PropertyName("date_added") val date_added :  String?)
+{
+    constructor() : this("","","","","",null,"")
 }
