@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#4267B2"
+    android:elevation="4dp">
+
+
+    <Button
+        android:id="@+id/btnClickProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="switchPageProfile"
+        android:text="Profile"/>
+
+    <Button
+        android:id="@+id/btnClickProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="switchPageHome"
+        android:text="Home"/>
+
+    <Button
+        android:id="@+id/btnClickProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="switchPageDisconnect"
+        android:text="Disconnection"/>
+
+
+
+</Toolbar>
+
