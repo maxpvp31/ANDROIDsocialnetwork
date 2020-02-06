@@ -8,11 +8,13 @@ import fr.isen.lopez.socialapplication.PostModel
 import fr.isen.lopez.socialapplication.R
 import kotlinx.android.synthetic.main.recycler_view_post_cell.view.*
 
+
 class PostAdapter (val posts: ArrayList<PostModel>): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_post_cell, parent, false)
+
         return PostViewHolder(view)
     }
 

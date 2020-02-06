@@ -30,7 +30,7 @@ class WriteData {
         return formatted
     }
 
-    fun writeNewPost( date: String?, text: String?, img : String?, user_id : String?) {
+    fun writeNewPost( text: String?, img: String?,  date : String?, user_id : String?) {
 
         val dataPost = database.getReference("Posts")
         val newId = dataPost.push().key.toString()
@@ -69,7 +69,7 @@ class WriteData {
     fun Register(id: String, email: String?, nom: String?, prenom : String?, ddnaissance: String?) {
        val formatted = DateCurrent()
         val  posts : ArrayList<String?>? = ArrayList<String?>()
-      writeNewPost("Salut je suis "+ nom +" . Je suis nouveau sur ce réseau !", "",formatted, id)
+      writeNewPost("Salut je suis "+ nom +". Je suis nouveau sur ce réseau !", "",formatted, id)
         val idPost : String = getnewIDpost()
         posts!!.add(idPost)
 
