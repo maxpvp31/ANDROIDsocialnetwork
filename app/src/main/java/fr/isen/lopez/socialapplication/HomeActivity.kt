@@ -36,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
 
 
         postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        postRecyclerView.adapter = PostAdapter(postList)
+        postRecyclerView.adapter = PostAdapter(postList,this)
 
     }
 
