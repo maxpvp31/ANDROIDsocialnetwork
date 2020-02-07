@@ -59,7 +59,22 @@ class WriteData {
 
     }
 
-  
+    fun editProfil(id_profil: String,nom: String, prenom: String, email: String) {
+
+        val dataPost = database.getReference("Users/"+id_profil)
+
+        val childUpdates = HashMap<String, Any>()
+        childUpdates.put("nom", nom)
+        childUpdates.put("prenom", prenom)
+        childUpdates.put("email", email)
+
+        dataPost.updateChildren(childUpdates);
+
+
+    }
+
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun PutNewLike( user_id: String?, post_id: String?, type : Int?) {
 
