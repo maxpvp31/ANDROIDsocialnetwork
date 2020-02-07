@@ -12,5 +12,5 @@ data class UserModel(
     @PropertyName("posts") val posts : ArrayList<String>?,
     @PropertyName("date_added") val date_added :  String?)
 {
-    constructor() : this("","","","","",null,"")
+    constructor() : this(null,null,null,null,null,null,null)
 }

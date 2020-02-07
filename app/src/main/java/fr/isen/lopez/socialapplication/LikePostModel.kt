@@ -9,6 +9,6 @@ data class LikePostModel(
     @PropertyName("type") val type : Int?,
     @PropertyName("date_added") val date_added :  String?)
 {
-    constructor() : this("","",null,"")
+    constructor() : this(null,null,null,null)
 }
 

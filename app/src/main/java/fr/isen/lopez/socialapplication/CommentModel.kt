@@ -9,6 +9,6 @@ data class CommentModel(
     @PropertyName("id_post") val id_post : String?,
     @PropertyName("date_added") val date_added :  String?)
 {
-    constructor() : this("","","","")
+    constructor() : this(null,null,null,null)
 }
 

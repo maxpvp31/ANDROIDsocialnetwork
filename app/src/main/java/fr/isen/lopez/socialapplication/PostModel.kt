@@ -11,6 +11,6 @@ data class PostModel(
     @PropertyName("comments") val comments : ArrayList<Int>?,
     @PropertyName("likes") val likes : ArrayList<String>?)
  {
-     constructor() : this("","","","",null,null)
+     constructor() : this(null,null,null,null,null,null)
  }
 

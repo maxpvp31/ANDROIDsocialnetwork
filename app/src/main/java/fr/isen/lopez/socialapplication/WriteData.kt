@@ -44,6 +44,22 @@ class WriteData {
 
 
     }
+
+
+    fun editPost(id_post: String,text: String) {
+
+        val dataPost = database.getReference("Posts/"+id_post)
+
+        val childUpdates = HashMap<String, Any>()
+        childUpdates.put("text", text)
+
+
+        dataPost.updateChildren(childUpdates);
+
+
+    }
+
+  
     @RequiresApi(Build.VERSION_CODES.O)
     fun PutNewLike( user_id: String?, post_id: String?, type : Int?) {
 

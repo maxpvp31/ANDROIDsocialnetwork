@@ -36,6 +36,7 @@ class HomeActivity : AppCompatActivity() {
         var postList = ArrayList<PostModel>()
         setContentView(R.layout.activity_home)
         val read = ReadData()
+        val write = WriteData()
         postList = read.ReadPosts()
 
 
