@@ -78,7 +78,7 @@ class WriteData {
         posts!!.add(idPost)
 
         val dataPost = database.getReference("Users")
-        val user = UserModel(email, nom, prenom, ddnaissance, null, posts,formatted )
+        val user = UserModel(email, nom, prenom, ddnaissance, "", posts,formatted )
 
         dataPost.child(id).setValue(user)
 

@@ -12,29 +12,11 @@ class ReadData {
     }
     val database = FirebaseDatabase.getInstance()
 
-  // fun FindUserOnPost(post_id: String?): String?{
-
-
-   //}
-    //  fun FindUserOnComment(comment_id : String?) : String?{
-   //  }
-    //  fun FindCommentOnPosts(post_id : String?) : String?{
-   // }
-   // fun FindPostsOnComment(comment_id : String?) : String?{
-   // }
-    //    fun FindPostsOnComment(comment_id : String?) : String?{
-   //    }
-    //   fun PostsbyUser(user_id : String?){
-   //  }
-    //     fun LikebyUser(user_id : String?){
-    //     }
-
-    fun CommentsbyUser(user_id : String?){
-    }
-    fun CommentsbyPosts(post_id : String?){
-    }
+    var UserArray :  ArrayList<UserModel> =  ArrayList<UserModel>()
 
     fun ReadPosts() : ArrayList<PostModel>  {
+
+        var user : UserModel?
         val posts : ArrayList<PostModel>  =  ArrayList<PostModel>()
         val myRef = database.getReference("Posts")
         myRef.addValueEventListener(object : ValueEventListener {
@@ -43,11 +25,13 @@ class ReadData {
                 for(value in dataSnapshot.children ) {
 
                    val post = value.getValue(PostModel::class.java)
-
+                    user = FindUserPost(post!!.user_id)
+                    Log.d(ReadData.TAG, user.toString())
                   posts.add(post!!)
+                 UserArray.add(user!!)
 
                 }
-                Log.d(ReadData.TAG, "Value is: ${posts}")
+
 
             }
             override fun onCancelled(error: DatabaseError) {
@@ -60,9 +44,31 @@ class ReadData {
 
     }
 
-    fun ReadPostByUser(user_id: String?){
-        val myRef = database.getReference("Users")
+    fun getUserPost() :  ArrayList<UserModel>{
+        return this.UserArray
 
+    }
+
+    fun FindUserPost(user_id: String?) : UserModel?{
+        var user : UserModel? = UserModel()
+        val myRef = database.getReference("Users")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+
+                    if(value.key.equals(user_id)){
+
+                        user  = value.getValue(UserModel::class.java)
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return user
 
     }
 
