@@ -54,7 +54,7 @@ class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): Recycl
 
                 //context.startActivity(Intent(context, HomeActivity::class.java))
                 val foo = Intent(context, PostActivity::class.java)
-                foo.putExtra("mySecondKey", "mySecondValue")
+                foo.putExtra("idPost", "mySecondValue")
                 context.startActivity(foo)
             }
         }

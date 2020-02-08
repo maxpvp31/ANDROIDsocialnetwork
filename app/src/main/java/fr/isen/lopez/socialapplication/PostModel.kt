@@ -8,7 +8,7 @@ data class PostModel(
     @PropertyName("img") val img: String?,
     @PropertyName("date") val date : String?,
     @PropertyName("user_id") val user_id :  String?,
-    @PropertyName("comments") val comments : ArrayList<Int>?,
+    @PropertyName("comments") val comments : ArrayList<String>?,
     @PropertyName("likes") val likes : ArrayList<String>?)
  {
      constructor() : this(null,null,null,null,null,null)
