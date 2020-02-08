@@ -46,15 +46,18 @@ class WriteData {
     }
 
 
-    fun editPost(id_post: String,text: String) {
+    fun editPost(id_post: String?,id_user: String?,text: String) {
+        val read = ReadData()
+            if(read.CanEdit(id_user,id_post)){
+                val dataPost = database.getReference("Posts/"+id_post)
 
-        val dataPost = database.getReference("Posts/"+id_post)
-
-        val childUpdates = HashMap<String, Any>()
-        childUpdates.put("text", text)
+                val childUpdates = HashMap<String, Any>()
+                childUpdates.put("text", text)
 
 
-        dataPost.updateChildren(childUpdates);
+                dataPost.updateChildren(childUpdates);
+
+            }
 
 
     }

@@ -12,7 +12,7 @@ class ReadData {
     }
     val database = FirebaseDatabase.getInstance()
 
-    var UserArray :  ArrayList<UserModel> =  ArrayList<UserModel>()
+    var UsersArray :  ArrayList<UserModel> =  ArrayList<UserModel>()
 
     fun ReadPosts() : ArrayList<PostModel>  {
 
@@ -25,10 +25,10 @@ class ReadData {
                 for(value in dataSnapshot.children ) {
 
                    val post = value.getValue(PostModel::class.java)
-                    user = FindUserPost(post!!.user_id)
+                    user = getUser(post!!.user_id)
                     Log.d(ReadData.TAG, user.toString())
                   posts.add(post!!)
-                 UserArray.add(user!!)
+                    UsersArray.add(user!!)
 
                 }
 
@@ -44,12 +44,138 @@ class ReadData {
 
     }
 
-    fun getUserPost() :  ArrayList<UserModel>{
-        return this.UserArray
+    fun getUserPosts() :  ArrayList<UserModel>{
+        return this.UsersArray
 
     }
 
-    fun FindUserPost(user_id: String?) : UserModel?{
+    fun getUserIdByEmail(email : String) : String?{
+
+        var userId : String? = ""
+        var user : UserModel? = UserModel()
+        val myRef = database.getReference("Users")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+                    user = value.getValue(UserModel::class.java)
+
+                    if(user!!.email.equals(email)){
+
+                        userId = value.key
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return userId
+
+
+    }
+
+
+    fun ReadPostByUser(user_id : String) : PostModel?{
+        var post : PostModel? = PostModel()
+        val myRef = database.getReference("Post")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+                    val postF = value.getValue(PostModel::class.java)
+
+                    if(postF!!.user_id.equals(user_id)){
+
+                        post  = value.getValue(PostModel::class.java)
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return post
+
+    }
+
+    fun CanEdit(user_id: String?,post_id : String?) : Boolean{
+        var edit : Boolean = false
+        val post : PostModel? = getPost(post_id)
+        if(post!!.user_id.equals(user_id)){
+
+           edit = true
+
+        }
+        return edit
+    }
+
+    fun getPost(post_id : String?): PostModel?{
+        var post : PostModel? = PostModel()
+        val myRef = database.getReference("Post")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+
+                    if(value.key.equals(post_id)){
+
+                        post  = value.getValue(PostModel::class.java)
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return post
+    }
+    fun getComment(comment_id : String?): CommentModel?{
+        var comment : CommentModel? = CommentModel()
+        val myRef = database.getReference("Comments")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+
+                    if(value.key.equals(comment_id)){
+
+                        comment  = value.getValue(CommentModel::class.java)
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return comment
+    }
+    fun getLike(like_id : String?): LikePostModel?{
+        var like : LikePostModel? = LikePostModel()
+        val myRef = database.getReference("Likes")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+
+                    if(value.key.equals(like_id)){
+
+                        like  = value.getValue(LikePostModel::class.java)
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return like
+    }
+    fun getUser(user_id: String?) : UserModel?{
         var user : UserModel? = UserModel()
         val myRef = database.getReference("Users")
         myRef.addValueEventListener(object : ValueEventListener {
@@ -72,6 +198,54 @@ class ReadData {
 
     }
 
+
+    fun NumberLikeOnPost(post_id: String) : Int{
+        var post : PostModel? = PostModel()
+        var numberlike : Int = 0
+        val myRef = database.getReference("Posts")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+
+                    if(value.key.equals(post_id)){
+
+                        post  = value.getValue(PostModel::class.java)
+                        numberlike = post!!.likes!!.size
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return numberlike
+    }
+
+    fun NumberCommentOnPost(post_id: String) : Int{
+        var post : PostModel? = PostModel()
+        var numbercomment : Int = 0
+        val myRef = database.getReference("Posts")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+
+                    if(value.key.equals(post_id)){
+
+                        post  = value.getValue(PostModel::class.java)
+                        numbercomment = post!!.comments!!.size
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return numbercomment
+    }
 
 
 
