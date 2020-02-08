@@ -52,9 +52,10 @@ class ReadData {
 
 
 
-    fun ReadPostByUser(user_id : String) : PostModel?{
+    fun ReadPostByUser(user_id : String) : ArrayList<PostModel?>?{
+        val posts : ArrayList<PostModel?>? =  ArrayList<PostModel?>()
         var post : PostModel? = PostModel()
-        val myRef = database.getReference("Post")
+        val myRef = database.getReference("Posts")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (value in dataSnapshot.children){
@@ -63,7 +64,7 @@ class ReadData {
                     if(postF!!.user_id.equals(user_id)){
 
                         post  = value.getValue(PostModel::class.java)
-
+                        posts!!.add(post)
                     }
                 }
             }
@@ -72,7 +73,7 @@ class ReadData {
                 Log.w(ReadData.TAG, "Failed to read value.", error.toException())
             }
         })
-        return post
+        return posts
 
     }
 
