@@ -4,6 +4,7 @@ import com.google.firebase.database.PropertyName
 
 
 data class PostModel(
+    @PropertyName("id") val id_post: String?,
     @PropertyName("text") val text: String?,
     @PropertyName("img") val img: String?,
     @PropertyName("date") val date : String?,
@@ -11,6 +12,6 @@ data class PostModel(
     @PropertyName("comments") val comments : ArrayList<String>?,
     @PropertyName("likes") val likes : ArrayList<String>?)
  {
-     constructor() : this(null,null,null,null,null,null)
+     constructor() : this(null,null,null,null,null,null,null)
  }
 

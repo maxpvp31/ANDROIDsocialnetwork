@@ -35,11 +35,11 @@ class WriteData {
         val dataPost = database.getReference("Posts")
         val newId = dataPost.push().key.toString()
         setnewIDpost(newId)
-        val comment : ArrayList<Int> =  ArrayList<Int>()
-        comment.add(0)
+        val comment : ArrayList<String> =  ArrayList<String>()
+        comment.add("")
         val like : ArrayList<String> =  ArrayList<String>()
         like.add("0")
-        val post = PostModel(text, img, date, user_id,comment, like)
+        val post = PostModel(newId,text, img, date, user_id,comment, like)
         dataPost.child(newId).setValue(post)
 
 
@@ -85,7 +85,7 @@ class WriteData {
         val newId = dataPost.push().key.toString()
 
         val formatted = DateCurrent()
-        val like = LikePostModel(user_id, post_id, type, formatted )
+        val like = LikePostModel(newId,user_id, post_id, type, formatted )
         dataPost.child(newId).setValue(like)
 
 
@@ -97,7 +97,7 @@ class WriteData {
         val newId = dataPost.push().key.toString()
 
         val formatted = DateCurrent()
-        val comment = CommentModel(text, id_user, id_post, formatted)
+        val comment = CommentModel(newId,text, id_user, id_post, formatted)
         dataPost.child(newId).setValue(comment)
     }
 
@@ -112,7 +112,7 @@ class WriteData {
         posts!!.add(idPost)
 
         val dataPost = database.getReference("Users")
-        val user = UserModel(email, nom, prenom, ddnaissance, "", posts,formatted )
+        val user = UserModel(id,email, nom, prenom, ddnaissance, "", posts,formatted )
 
         dataPost.child(id).setValue(user)
 

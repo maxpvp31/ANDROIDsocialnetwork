@@ -4,6 +4,7 @@ import com.google.firebase.database.PropertyName
 
 
 data class UserModel(
+    @PropertyName("id_user") val id_user: String?,
     @PropertyName("email") val email: String?,
     @PropertyName("nom") val nom: String?,
     @PropertyName("prenom") val prenom : String?,
@@ -12,5 +13,5 @@ data class UserModel(
     @PropertyName("posts") val posts : ArrayList<String>?,
     @PropertyName("date_added") val date_added :  String?)
 {
-    constructor() : this(null,null,null,null,null,null,null)
+    constructor() : this(null,null,null,null,null,null,null,null)
 }
