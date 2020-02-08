@@ -15,6 +15,12 @@ import fr.isen.lopez.socialapplication.PostActivity
 import fr.isen.lopez.socialapplication.PostModel
 import fr.isen.lopez.socialapplication.R
 import kotlinx.android.synthetic.main.recycler_view_post_cell.view.*
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.ContextCompat.startActivity
+
+
+
+
 
 class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
@@ -45,6 +51,11 @@ class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): Recycl
                 Toast.makeText(context,"TEST Click listener",Toast.LENGTH_SHORT).show()
                 val i = adapterPosition
                 Log.d("listener", "tessssssssssssssssssssssssssst")
+
+                //context.startActivity(Intent(context, HomeActivity::class.java))
+                val foo = Intent(context, PostActivity::class.java)
+                foo.putExtra("mySecondKey", "mySecondValue")
+                context.startActivity(foo)
             }
         }
 

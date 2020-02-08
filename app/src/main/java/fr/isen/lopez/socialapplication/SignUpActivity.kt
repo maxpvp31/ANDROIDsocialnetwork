@@ -14,15 +14,18 @@ import android.widget.Toast
 import android.content.Intent
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Build
 import android.util.Log
 import android.view.View
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -84,8 +87,8 @@ class SignUpActivity : AppCompatActivity() {
         }
         return age
     }
-
-    public fun createAccount(view: View) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun createAccount(view: View) {
 
         val newuser = WriteData()
         if (input_confirm_password.text.toString() == input_password.text.toString()) {
@@ -95,6 +98,7 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Inscription", "createUserWithEmail:success")
                     val user = mAuth?.currentUser
+
                     newuser.Register(user!!.uid, input_email.text.toString(), input_familyname.text.toString(), input_surname.text.toString(), date_input.text.toString())
                     updateUI(user)
 
