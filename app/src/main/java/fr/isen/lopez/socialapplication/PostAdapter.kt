@@ -47,16 +47,16 @@ class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): Recycl
         fun bind(post: PostModel) {
             view.postDisplayContentView.text = post.text
 
-            view.imageClick.setOnClickListener {
+           /* view.imageClick.setOnClickListener {
                 Toast.makeText(context,"TEST Click listener",Toast.LENGTH_SHORT).show()
                 val i = adapterPosition
                 Log.d("listener", "tessssssssssssssssssssssssssst")
 
                 //context.startActivity(Intent(context, HomeActivity::class.java))
                 val foo = Intent(context, PostActivity::class.java)
-                foo.putExtra("idPost", "mySecondValue")
+                //foo.putExtra("idPost", "mySecondValue")
                 context.startActivity(foo)
-            }
+            }*/
         }
 
 
