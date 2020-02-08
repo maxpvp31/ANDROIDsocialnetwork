@@ -43,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
         val temporaryText: String = getString(R.string.post_example)
 
         postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        postRecyclerView.adapter = PostAdapter(postList)
+        postRecyclerView.adapter = PostAdapter(postList,this)
 
     }
 
