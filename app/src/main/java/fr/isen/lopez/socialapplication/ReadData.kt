@@ -48,6 +48,35 @@ class ReadData {
         return this.UsersArray
 
     }
+
+    fun getUserIdByEmail(email : String) : String?{
+
+        var userId : String? = ""
+        var user : UserModel? = UserModel()
+        val myRef = database.getReference("Users")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+                    user = value.getValue(UserModel::class.java)
+
+                    if(user!!.email.equals(email)){
+
+                        userId = value.key
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return userId
+
+
+    }
+
+
     fun ReadPostByUser(user_id : String) : PostModel?{
         var post : PostModel? = PostModel()
         val myRef = database.getReference("Post")
