@@ -170,6 +170,54 @@ class ReadData {
     }
 
 
+    fun NumberLikeOnPost(post_id: String) : Int{
+        var post : PostModel? = PostModel()
+        var numberlike : Int = 0
+        val myRef = database.getReference("Posts")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+
+                    if(value.key.equals(post_id)){
+
+                        post  = value.getValue(PostModel::class.java)
+                        numberlike = post!!.likes!!.size
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return numberlike
+    }
+
+    fun NumberCommentOnPost(post_id: String) : Int{
+        var post : PostModel? = PostModel()
+        var numbercomment : Int = 0
+        val myRef = database.getReference("Posts")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (value in dataSnapshot.children){
+
+                    if(value.key.equals(post_id)){
+
+                        post  = value.getValue(PostModel::class.java)
+                        numbercomment = post!!.comments!!.size
+
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+                Log.w(ReadData.TAG, "Failed to read value.", error.toException())
+            }
+        })
+        return numbercomment
+    }
+
 
 
 
