@@ -15,13 +15,7 @@ class WriteData {
     }
 
     val database = FirebaseDatabase.getInstance()
-    var newIDpost : String = ""
-    fun getnewIDpost(): String{
-        return this.newIDpost
-    }
-    fun  setnewIDpost(newIDpost : String){
-        this.newIDpost = newIDpost
-    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun DateCurrent() : String{
         val current = LocalDateTime.now()
@@ -34,7 +28,8 @@ class WriteData {
 
         val dataPost = database.getReference("Posts")
         val newId = dataPost.push().key.toString()
-        setnewIDpost(newId)
+
+        editPostArray(newId,user_id)
         val comment : ArrayList<String> =  ArrayList<String>()
         comment.add("")
         val like : ArrayList<String> =  ArrayList<String>()
@@ -44,8 +39,52 @@ class WriteData {
 
 
     }
+    fun editPostArray(id : String, id_user: String?){
+        val dataPost = database.getReference("Users" + id_user)
+        val read = ReadData()
+        val user : UserModel? =  read.getUser(id_user)
+        var posts : ArrayList<String>? = user!!.posts
+        posts!!.add(id)
+
+        val childUpdates = HashMap<String, Any>()
+        childUpdates.put("posts", posts)
 
 
+        dataPost.updateChildren(childUpdates)
+
+
+    }
+
+    fun editCommentArray(id : String, id_post: String?){
+
+        val dataPost = database.getReference("Posts" + id)
+        val read = ReadData()
+        val posts : PostModel? =  read.getPost(id_post)
+        var comments : ArrayList<String>? = posts!!.comments
+        comments!!.add(id)
+
+        val childUpdates = HashMap<String, Any>()
+        childUpdates.put("comments", comments)
+
+
+        dataPost.updateChildren(childUpdates);
+
+    }
+    fun editLikeArray(id : String, id_post: String?){
+        val dataPost = database.getReference("Posts" + id)
+        val read = ReadData()
+        val posts : PostModel? =  read.getPost(id_post)
+        var likes : ArrayList<String>? = posts!!.likes
+        likes!!.add(id)
+
+        val childUpdates = HashMap<String, Any>()
+        childUpdates.put("likes", likes)
+
+
+        dataPost.updateChildren(childUpdates);
+
+
+    }
     fun editPost(id_post: String?,id_user: String?,text: String) {
         val read = ReadData()
             if(read.CanEdit(id_user,id_post)){
@@ -83,7 +122,7 @@ class WriteData {
 
         val dataPost = database.getReference("Likes")
         val newId = dataPost.push().key.toString()
-
+        editLikeArray(newId,post_id)
         val formatted = DateCurrent()
         val like = LikePostModel(newId,user_id, post_id, type, formatted )
         dataPost.child(newId).setValue(like)
@@ -95,7 +134,7 @@ class WriteData {
 
         val dataPost = database.getReference("Comments")
         val newId = dataPost.push().key.toString()
-
+        editCommentArray(newId,id_post)
         val formatted = DateCurrent()
         val comment = CommentModel(newId,text, id_user, id_post, formatted)
         dataPost.child(newId).setValue(comment)
@@ -108,8 +147,7 @@ class WriteData {
        val formatted = DateCurrent()
         val  posts : ArrayList<String>? = ArrayList<String>()
       writeNewPost("Salut je suis "+ nom +". Je suis nouveau sur ce réseau !", "",formatted, id)
-        val idPost : String = getnewIDpost()
-        posts!!.add(idPost)
+
 
         val dataPost = database.getReference("Users")
         val user = UserModel(id,email, nom, prenom, ddnaissance, "", posts,formatted )
