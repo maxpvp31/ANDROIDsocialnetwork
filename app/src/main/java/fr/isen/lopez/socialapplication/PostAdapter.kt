@@ -17,6 +17,9 @@ import fr.isen.lopez.socialapplication.R
 import kotlinx.android.synthetic.main.recycler_view_post_cell.view.*
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.ContextCompat.startActivity
+
+
 
 
 
@@ -27,7 +30,7 @@ class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): Recycl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_post_cell, parent, false)
-        return PostViewHolder(view,context)
+        return PostViewHolder(view, context)
     }
 
     override fun getItemCount(): Int {
@@ -43,20 +46,19 @@ class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): Recycl
 
 
 
-    class PostViewHolder(val view: View, val context: Context): RecyclerView.ViewHolder(view) {
+    class PostViewHolder(val view: View,val context: Context): RecyclerView.ViewHolder(view) {
         fun bind(post: PostModel) {
             view.postDisplayContentView.text = post.text
 
-           /* view.imageClick.setOnClickListener {
-                Toast.makeText(context,"TEST Click listener",Toast.LENGTH_SHORT).show()
-                val i = adapterPosition
-                Log.d("listener", "tessssssssssssssssssssssssssst")
+            view.button_comment.setOnClickListener {
+                Toast.makeText(context,post.id_post,Toast.LENGTH_SHORT).show()
+               // val i = adapterPosition
 
-                //context.startActivity(Intent(context, HomeActivity::class.java))
                 val foo = Intent(context, PostActivity::class.java)
-                //foo.putExtra("idPost", "mySecondValue")
+                foo.putExtra("idPost", post.id_post)
                 context.startActivity(foo)
-            }*/
+
+            }
         }
 
 

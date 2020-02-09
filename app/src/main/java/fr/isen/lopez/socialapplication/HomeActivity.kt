@@ -35,22 +35,14 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var postList = ArrayList<PostModel>()
-        Log.d("Erreur","erreur bis2")
-
         setContentView(R.layout.activity_home)
-        Log.d("Erreur","erreur bis")
         val read = ReadData()
-        Log.d("Erreur","erreur cheum")
-
         val write = WriteData()
-        Log.d("okok","erreur bis")
 
         postList = read.ReadPosts()
 
 
-        Log.d("Erreur","erreur 1")
         postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        Log.d("Erreur","erreur 2")
         postRecyclerView.adapter = PostAdapter(postList,this)
 
     }
