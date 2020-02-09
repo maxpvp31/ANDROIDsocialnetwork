@@ -3,6 +3,7 @@ package fr.isen.lopez.socialapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.lopez.androidtoolbox.PostAdapter
@@ -37,10 +38,9 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         val read = ReadData()
         val write = WriteData()
+
         postList = read.ReadPosts()
 
-
-        val temporaryText: String = getString(R.string.post_example)
 
         postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         postRecyclerView.adapter = PostAdapter(postList,this)
