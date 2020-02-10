@@ -41,6 +41,19 @@ class HomeActivity : AppCompatActivity() {
         super.onStart()
 
     }
+     @RequiresApi(Build.VERSION_CODES.O)
+    public fun publish(view: View){
+
+       val mAuth = FirebaseAuth.getInstance()
+        val write = WriteData()
+        var currentUser = mAuth.currentUser
+
+        write.writeNewPost(InputPost.text.toString(),"", currentUser!!.uid)
+
+        postRecyclerView.adapter!!.notifyDataSetChanged()
+
+    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

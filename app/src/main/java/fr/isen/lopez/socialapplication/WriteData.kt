@@ -25,11 +25,11 @@ class WriteData {
         return formatted
     }
 
-    fun writeNewPost( text: String?, img: String?,  date : String?, user_id : String?) {
+    fun writeNewPost( text: String?, img: String?, user_id : String?) {
 
         val dataPost = database.getReference("Posts")
         val newId = dataPost.push().key.toString()
-
+        val date = DateCurrent()
         editPostArray(newId,user_id)
         val comment : ArrayList<String> =  ArrayList<String>()
         comment.add("")
@@ -42,7 +42,7 @@ class WriteData {
     }
 
     public fun editPostArray(id : String, id_user: String?){
-        val dataPost = database.getReference("Users" + id_user)
+        val dataPost = database.getReference("Users/" + id_user)
         val read = ReadData()
         var user : UserModel = UserModel()
             read.getUser(id_user){
@@ -64,7 +64,7 @@ class WriteData {
 
     fun editCommentArray(id : String, id_post: String?){
 
-        val dataPost = database.getReference("Posts" + id)
+        val dataPost = database.getReference("Posts/" + id)
         val read = ReadData()
         var posts: PostModel = PostModel()
         read.getPost(id_post) {posts = it
@@ -82,7 +82,7 @@ class WriteData {
 
     }
     fun editLikeArray(id : String, id_post: String?){
-        val dataPost = database.getReference("Posts" + id)
+        val dataPost = database.getReference("Posts/" + id)
         val read = ReadData()
         var posts: PostModel = PostModel()
         read.getPost(id_post) {posts = it
@@ -159,7 +159,7 @@ class WriteData {
     fun Register(id: String, email: String?, nom: String?, prenom : String?, ddnaissance: String?) {
        val formatted = DateCurrent()
         val  posts : ArrayList<String>? = ArrayList<String>()
-      writeNewPost("Salut je suis "+ nom +". Je suis nouveau sur ce réseau !", "",formatted, id)
+      writeNewPost("Salut je suis "+ nom +". Je suis nouveau sur ce réseau !", "", id)
 
 
         val dataPost = database.getReference("Users")
