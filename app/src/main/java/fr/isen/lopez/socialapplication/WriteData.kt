@@ -7,6 +7,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.auth.User
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 class WriteData {
@@ -42,15 +43,20 @@ class WriteData {
     fun editPostArray(id : String, id_user: String?){
         val dataPost = database.getReference("Users" + id_user)
         val read = ReadData()
-        val user : UserModel? =  read.getUser(id_user)
-        var posts : ArrayList<String>? = user!!.posts
-        posts!!.add(id)
+        var user : UserModel = UserModel()
+            read.getUser(id_user){
+                user = it
 
-        val childUpdates = HashMap<String, Any>()
-        childUpdates.put("posts", posts)
+                var posts : ArrayList<String>? = user!!.posts
+                posts!!.add(id)
+
+                val childUpdates = HashMap<String, Any>()
+                childUpdates.put("posts", posts)
 
 
-        dataPost.updateChildren(childUpdates)
+                dataPost.updateChildren(childUpdates)
+            }
+
 
 
     }
@@ -59,29 +65,36 @@ class WriteData {
 
         val dataPost = database.getReference("Posts" + id)
         val read = ReadData()
-        val posts : PostModel? =  read.getPost(id_post)
-        var comments : ArrayList<String>? = posts!!.comments
-        comments!!.add(id)
+        var posts: PostModel = PostModel()
+        read.getPost(id_post) {posts = it
+            var comments : ArrayList<String>? = posts!!.comments
+            comments!!.add(id)
 
-        val childUpdates = HashMap<String, Any>()
-        childUpdates.put("comments", comments)
+            val childUpdates = HashMap<String, Any>()
+            childUpdates.put("comments", comments)
 
 
-        dataPost.updateChildren(childUpdates);
+            dataPost.updateChildren(childUpdates);
+
+        }
+
 
     }
     fun editLikeArray(id : String, id_post: String?){
         val dataPost = database.getReference("Posts" + id)
         val read = ReadData()
-        val posts : PostModel? =  read.getPost(id_post)
-        var likes : ArrayList<String>? = posts!!.likes
-        likes!!.add(id)
+        var posts: PostModel = PostModel()
+        read.getPost(id_post) {posts = it
+            var likes : ArrayList<String>? = posts!!.likes
+            likes!!.add(id)
 
-        val childUpdates = HashMap<String, Any>()
-        childUpdates.put("likes", likes)
+            val childUpdates = HashMap<String, Any>()
+            childUpdates.put("likes", likes)
 
 
-        dataPost.updateChildren(childUpdates);
+            dataPost.updateChildren(childUpdates);
+        }
+
 
 
     }

@@ -30,6 +30,10 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    override fun onStart() {
+        super.onStart()
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +43,10 @@ class HomeActivity : AppCompatActivity() {
         val read = ReadData()
         val write = WriteData()
 
-        postList = read.ReadPosts()
+        postList = read.ReadPosts{postList}
+        for(value in postList){
+            Log.d("Value",value.user_id)
+        }
 
 
         postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
