@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.lopez.androidtoolbox.PostAdapter
 import kotlinx.android.synthetic.main.activity_home.*
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -20,6 +22,8 @@ class HomeActivity : AppCompatActivity() {
 
     public fun switchPageHome(view:View){
 
+        val intent = Intent(this,ModifyPost::class.java)
+        startActivity(intent)
 
     }
 

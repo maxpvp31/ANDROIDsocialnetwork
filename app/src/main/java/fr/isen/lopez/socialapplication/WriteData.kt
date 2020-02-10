@@ -40,7 +40,8 @@ class WriteData {
 
 
     }
-    fun editPostArray(id : String, id_user: String?){
+
+    public fun editPostArray(id : String, id_user: String?){
         val dataPost = database.getReference("Users" + id_user)
         val read = ReadData()
         var user : UserModel = UserModel()
