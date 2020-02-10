@@ -87,7 +87,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#4267B2"
         android:text="Poster"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/textInputLayout8"
         app:layout_constraintStart_toEndOf="@+id/textInputLayout8"
         app:layout_constraintTop_toTopOf="@+id/textInputLayout8" />

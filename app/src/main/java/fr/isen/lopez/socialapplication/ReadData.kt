@@ -110,13 +110,14 @@ class ReadData {
 
                     }
                 }
+                callback.invoke(post)
+
             }
             override fun onCancelled(error: DatabaseError) {
 
                 Log.w(ReadData.TAG, "Failed to read value.", error.toException())
             }
         })
-   callback.invoke(post)
     }
 
     fun getComment(comment_id : String?,   callback: (CommentModel) -> Unit ){

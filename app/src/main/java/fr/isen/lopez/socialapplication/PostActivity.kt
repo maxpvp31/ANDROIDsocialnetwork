@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import fr.isen.lopez.androidtoolbox.PostAdapter
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_post.*
 
 class PostActivity : AppCompatActivity() {
 
@@ -40,12 +44,22 @@ class PostActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        var post = PostModel()
         postId = intent.getStringExtra("idPost") //ID DU POST
         Log.d("IDdupost",postId)
         val read = ReadData()
         val write = WriteData()
 
-        
+        read.getPost(postId){
+            post = it
+            postContent.text = post.text.toString()
+            Toast.makeText(this,post.text.toString().toString(),Toast.LENGTH_SHORT).show()
+
+
+        }
+
 
     }
+
+
 }
