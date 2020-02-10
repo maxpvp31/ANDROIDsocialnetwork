@@ -173,15 +173,17 @@ class ReadData {
 
                         user  = value.getValue(UserModel::class.java)!!
 
+
                     }
                 }
+                callback.invoke(user)
             }
             override fun onCancelled(error: DatabaseError) {
 
                 Log.w(ReadData.TAG, "Failed to read value.", error.toException())
             }
         })
-        callback.invoke(user)
+
 
     }
 
