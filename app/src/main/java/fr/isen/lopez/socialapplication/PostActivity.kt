@@ -39,11 +39,6 @@ class PostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post)
 
-
-    }
-
-    override fun onStart() {
-        super.onStart()
         var post = PostModel()
         postId = intent.getStringExtra("idPost") //ID DU POST
         Log.d("IDdupost",postId)
@@ -58,8 +53,12 @@ class PostActivity : AppCompatActivity() {
 
         }
 
+        var commentList = ArrayList<CommentModel>()
+
+
 
     }
+
 
 
 }
