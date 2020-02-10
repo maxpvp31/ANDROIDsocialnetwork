@@ -34,18 +34,23 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var postList = ArrayList<PostModel>()
         setContentView(R.layout.activity_home)
+
+        layerTest()
+    }
+
+     fun layerTest() {
+        var postList = ArrayList<PostModel>()
         val read = ReadData()
         val write = WriteData()
 
-        postList = read.ReadPosts()
-
-
-        postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        postRecyclerView.adapter = PostAdapter(postList,this)
+        read.ReadPosts {
+            postList=it
+            postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            postRecyclerView.adapter = PostAdapter(postList,this)
+        }
+        //Log.d("testIDpost",postList[0].id_post)
 
     }
-
 
 }

@@ -14,7 +14,7 @@ class ReadData {
 
     var UsersArray :  ArrayList<UserModel> =  ArrayList<UserModel>()
 
-    fun ReadPosts() : ArrayList<PostModel>  {
+    fun ReadPosts(callback: (ArrayList<PostModel>) -> Unit) {
 
         var user : UserModel?
         val posts : ArrayList<PostModel>  =  ArrayList<PostModel>()
@@ -27,11 +27,12 @@ class ReadData {
                    val post = value.getValue(PostModel::class.java)
                     user = getUser(post!!.user_id)
                     Log.d(ReadData.TAG, user.toString())
-                  posts.add(post!!)
+                    posts.add(post!!)
                     UsersArray.add(user!!)
 
                 }
 
+                callback.invoke(posts)
 
             }
             override fun onCancelled(error: DatabaseError) {
@@ -39,8 +40,6 @@ class ReadData {
                 Log.w(ReadData.TAG, "Failed to read value.", error.toException())
             }
         })
-
-        return posts
 
     }
 
