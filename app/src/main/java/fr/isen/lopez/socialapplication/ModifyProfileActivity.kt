@@ -1,8 +1,11 @@
 package fr.isen.lopez.socialapplication
 
+import android.content.Context
 import android.content.Intent
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
@@ -21,7 +24,25 @@ class ModifyProfileActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
+
+    /*    changeImage.setOnClickListener{
+            val imagefromgalleryIntent = Intent(Intent.ACTION_PICK)
+            imagefromgalleryIntent.setType(getString(R.string.img))
+
+            val imagefromcameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+            val chooseIntent= Intent.createChooser(imagefromgalleryIntent, getString(R.string.gallery))
+            chooseIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(imagefromcameraIntent))
+            startActivityForResult(chooseIntent,11)
+        }*/
+
     }
+
+
+
+
+
+
 
 
     public fun modifyValid(view: View){

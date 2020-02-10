@@ -14,7 +14,7 @@
         android:layout_marginTop="92dp"
         android:text="@string/datenaiss"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/changeImage" />
 
     <TextView
         android:id="@+id/textView9"
@@ -24,7 +24,7 @@
         android:layout_marginTop="140dp"
         android:text="Your post"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/changeImage" />
 
     <TextView
         android:id="@+id/textView8"
@@ -34,7 +34,7 @@
         android:layout_marginTop="50dp"
         android:text="Email :"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/changeImage" />
 
     <TextView
         android:id="@+id/emailUser"
@@ -47,18 +47,19 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/changeImage" />
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/changeImage"
         android:layout_width="164dp"
         android:layout_height="164dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@mipmap/ic_launcher_round"
@@ -93,13 +94,17 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="99dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="159dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="33dp"
+        android:background="@android:color/holo_blue_dark"
         android:onClick="switchPageModify"
-        android:text="Modify"
+        android:text="Modifier profile"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/changeImage"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView

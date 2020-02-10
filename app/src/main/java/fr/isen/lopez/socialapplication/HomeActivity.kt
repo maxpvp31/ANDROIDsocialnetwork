@@ -25,8 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
     public fun switchPageHome(view:View){
 
-        val intent = Intent(this,ModifyPost::class.java)
-        startActivity(intent)
+
 
     }
 

@@ -12,7 +12,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/changeImage"
         android:layout_width="164dp"
         android:layout_height="164dp"
         android:layout_marginStart="140dp"
@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toTopOf="@+id/newSurmane"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/changeImage" />
 
     <Button
         android:id="@+id/button2"

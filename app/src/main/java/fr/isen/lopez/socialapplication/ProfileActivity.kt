@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.auth.User
+import fr.isen.lopez.androidtoolbox.MyPostAdapter
+import fr.isen.lopez.androidtoolbox.PostAdapter
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_profile.postRecyclerView
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -50,7 +55,6 @@ class ProfileActivity : AppCompatActivity() {
         Log.d("dedede",currentUser!!.uid)
 
         var user : UserModel = UserModel()
-
         read.getUser(currentUser.uid){
             user = it
 
@@ -58,6 +62,18 @@ class ProfileActivity : AppCompatActivity() {
             surnameUser.text = it.prenom
             emailUser.text = it.email
             birthDateUser.text = it.ddnaissance
+        }
+
+
+
+        var myPostList = ArrayList<PostModel>()
+
+        val write = WriteData()
+
+        read.ReadPosts{
+            myPostList = it
+            postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            postRecyclerView.adapter = MyPostAdapter(myPostList,this)
         }
     }
 
