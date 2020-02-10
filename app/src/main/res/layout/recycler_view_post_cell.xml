@@ -63,6 +63,6 @@
         android:layout_height="32dp"
         app:layout_constraintStart_toStartOf="@+id/postDisplayContentView"
         app:layout_constraintTop_toBottomOf="@+id/postDisplayContentView"
-        app:srcCompat="@drawable/like_icon" />
+        app:srcCompat="@drawable/like" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
