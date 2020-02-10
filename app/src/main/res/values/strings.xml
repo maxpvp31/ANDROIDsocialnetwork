@@ -16,5 +16,6 @@
     <string name="modify">Modify</string>
     <string name="textview">TextView</string>
     <string name="publier" />
+    <string name="publish">publier</string>
 
 </resources>
