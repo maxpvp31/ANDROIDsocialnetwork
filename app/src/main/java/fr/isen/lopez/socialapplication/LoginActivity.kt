@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    public override fun onStart() {
+  /*  public override fun onStart() {
         super.onStart()
 
         if(Constant.justDisconnected == false){
@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         }
         // Check if user is signed in (non-null) and update UI accordingly.
 
-    }
+    }*/
 
     fun updateUI(account: FirebaseUser?) {
         if (account != null) {
