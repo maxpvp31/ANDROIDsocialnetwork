@@ -42,7 +42,7 @@ class WriteData {
     }
 
     public fun editPostArray(id : String, id_user: String?){
-        val dataPost = database.getReference("Users" + id_user)
+        val dataPost = database.getReference("Users/" + id_user)
         val read = ReadData()
         var user : UserModel = UserModel()
             read.getUser(id_user){
@@ -64,7 +64,7 @@ class WriteData {
 
     fun editCommentArray(id : String, id_post: String?){
 
-        val dataPost = database.getReference("Posts" + id)
+        val dataPost = database.getReference("Posts/" + id)
         val read = ReadData()
         var posts: PostModel = PostModel()
         read.getPost(id_post) {posts = it
@@ -82,7 +82,7 @@ class WriteData {
 
     }
     fun editLikeArray(id : String, id_post: String?){
-        val dataPost = database.getReference("Posts" + id)
+        val dataPost = database.getReference("Posts/" + id)
         val read = ReadData()
         var posts: PostModel = PostModel()
         read.getPost(id_post) {posts = it
