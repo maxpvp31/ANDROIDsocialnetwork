@@ -20,14 +20,14 @@ class HomeActivity : AppCompatActivity() {
 
     public fun switchPageHome(view:View){
 
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
+
     }
 
     public fun switchPageDisconnect(view:View){
 
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        Constant.justDisconnected = true
     }
 
 
@@ -38,6 +38,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         val read = ReadData()
         val write = WriteData()
+        Constant.justDisconnected = false
 
         postList = read.ReadPosts()
 

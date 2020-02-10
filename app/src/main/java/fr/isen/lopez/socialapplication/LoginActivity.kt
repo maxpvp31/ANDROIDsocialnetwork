@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -41,9 +42,14 @@ class LoginActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
+
+        if(Constant.justDisconnected == false){
+
+            val currentUser = mAuth.currentUser
+            updateUI(currentUser)
+        }
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = mAuth.currentUser
-        updateUI(currentUser)
+
     }
 
     fun updateUI(account: FirebaseUser?) {
@@ -54,9 +60,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-  //  public fun show_password_now(Show : bool){
-     //   editText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-    //}
+    public fun show_password_now(view : View){
+
+        editPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
+    }
 
     public fun switchPage(view: View){
             mAuth.signInWithEmailAndPassword(usernameChild.text.toString(), editPassword.text.toString())
