@@ -11,5 +11,6 @@
     <string name="birth_date">Date de naissance</string>
     <string name="post_example">Exemple de Post</string>
     <string name="express_yourself">Exprimez vous</string>
+    <string name="comment">Commentaire..</string>
 
 </resources>
