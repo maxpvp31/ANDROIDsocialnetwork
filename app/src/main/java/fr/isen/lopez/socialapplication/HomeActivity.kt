@@ -43,14 +43,15 @@ class HomeActivity : AppCompatActivity() {
         val read = ReadData()
         val write = WriteData()
 
-        postList = read.ReadPosts{postList}
-        for(value in postList){
-            Log.d("Value",value.user_id)
-        }
+       read.ReadPosts{postList = it
+           for(value in postList){
+               Log.d("Value",value.user_id)
+           }
 
 
-        postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        postRecyclerView.adapter = PostAdapter(postList,this)
+           postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+           postRecyclerView.adapter = PostAdapter(postList,this)}
+
 
     }
 
