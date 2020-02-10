@@ -19,7 +19,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="140dp"
         android:layout_marginBottom="34dp"
-        app:layout_constraintBottom_toTopOf="@+id/input_familyname"
+        app:layout_constraintBottom_toTopOf="@+id/newName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -28,7 +28,7 @@
 
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/input_email"
+        android:id="@+id/newEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -37,10 +37,10 @@
         android:hint="E-mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_surname" />
+        app:layout_constraintTop_toBottomOf="@+id/newSurmane" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/input_surname"
+        android:id="@+id/newSurmane"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -49,10 +49,10 @@
         android:hint="@string/surname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_familyname" />
+        app:layout_constraintTop_toBottomOf="@+id/newName" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/input_familyname"
+        android:id="@+id/newName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -60,7 +60,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:hint="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/input_surname"
+        app:layout_constraintBottom_toTopOf="@+id/newSurmane"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -73,6 +73,7 @@
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="55dp"
         android:text="Valider"
+        android:onClick="modifyValid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

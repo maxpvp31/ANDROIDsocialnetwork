@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.auth.User
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -45,24 +46,19 @@ class ProfileActivity : AppCompatActivity() {
 
         var read = ReadData()
         val currentUser = mAuth.currentUser
+
         Log.d("dedede",currentUser!!.uid)
-        var user : UserModel = read.getUser(currentUser!!.uid)!!
 
-/*
-        YourPostList = ReadPostByUser(currentUser.uid)
-*/
+        var user : UserModel = UserModel()
 
+        read.getUser(currentUser.uid){
+            user = it
 
-        val name = user.nom
-        val surname  = user.prenom
-        val mail = user.email
-
-        Log.d("dede",user.toString())
-
-
-
-
-
+            nameUser.text = it.nom
+            surnameUser.text = it.prenom
+            emailUser.text = it.email
+            birthDateUser.text = it.ddnaissance
+        }
     }
 
 
