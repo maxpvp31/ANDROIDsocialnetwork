@@ -17,5 +17,6 @@
     <string name="textview">TextView</string>
     <string name="publier" />
     <string name="publish">publier</string>
+    <string name="profile_picture">Profile picture</string>
 
 </resources>

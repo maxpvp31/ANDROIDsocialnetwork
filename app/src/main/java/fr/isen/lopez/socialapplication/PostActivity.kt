@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_post.*
 class PostActivity : AppCompatActivity() {
 
     var postId: String? = ""
+    var name_string: String? = ""
+
 
     public fun switchPageProfile(view: View){
 
@@ -41,6 +43,8 @@ class PostActivity : AppCompatActivity() {
 
         var post = PostModel()
         postId = intent.getStringExtra("idPost") //ID DU POST
+        name_string = intent.getStringExtra("name_string") //ID DU POST
+        name_text.text = name_string
         Log.d("IDdupost",postId)
         val read = ReadData()
         val write = WriteData()

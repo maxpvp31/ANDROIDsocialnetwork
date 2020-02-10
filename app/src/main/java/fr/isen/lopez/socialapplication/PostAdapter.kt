@@ -46,6 +46,7 @@ class PostAdapter (val number_like: ArrayList<String>, val userListPost: ArrayLi
 
                 val foo = Intent(context, PostActivity::class.java)
                 foo.putExtra("idPost", post.id_post)
+                foo.putExtra("name_string",userListPost[postition].nom + " " + userListPost[postition].prenom)
                 context.startActivity(foo)
 
             }
