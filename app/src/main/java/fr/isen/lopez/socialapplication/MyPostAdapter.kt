@@ -10,19 +10,12 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.lopez.socialapplication.HomeActivity
-import fr.isen.lopez.socialapplication.PostActivity
-import fr.isen.lopez.socialapplication.PostModel
-import fr.isen.lopez.socialapplication.R
 import kotlinx.android.synthetic.main.recycler_view_my_post_cell.view.*
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.ContextCompat.startActivity
-
-
-
-
-
+import fr.isen.lopez.socialapplication.*
+import kotlin.math.log
 
 
 class MyPostAdapter (val posts: ArrayList<PostModel>, val context: Context): RecyclerView.Adapter<MyPostAdapter.PostViewHolder>() {
@@ -56,6 +49,10 @@ class MyPostAdapter (val posts: ArrayList<PostModel>, val context: Context): Rec
 
                 val foo = Intent(context, ModifyPost::class.java)
                 foo.putExtra("idPost", post.id_post)
+                Log.d("THIS IS THE ID",post.id_post)
+
+                Constant.actualPostId = post.id_post.toString()
+
                 context.startActivity(foo)
 
             }

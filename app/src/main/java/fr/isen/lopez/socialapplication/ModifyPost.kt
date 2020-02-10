@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
-
+import kotlinx.android.synthetic.main.activity_modify_post.*
 
 
 class ModifyPost : AppCompatActivity() {
@@ -21,14 +21,19 @@ class ModifyPost : AppCompatActivity() {
 
 
     public fun modifyPost(view: View) {
-        val write2 = WriteData()
-       mAuth = FirebaseAuth.getInstance()
-       // val read2 = ReadData()
-       // val currentUser = mAuth.currentUser
+        val write = WriteData()
+        mAuth = FirebaseAuth.getInstance()
+        val read2 = ReadData()
+        val currentUser = mAuth.currentUser
 
-        write2.editPost("-M-eH9XUvOruZUwq9oL9", "ZKy34dYdc4TuMSIHZ9ffBnpSeHF2", "on est laaaa")
 
-        val intent = Intent(this, HomeActivity::class.java)
+/*        val foo = Intent(context, ModifyPost::class.java)
+        foo.putExtra("idPost", post.id_post)*/
+
+        write.editPost(Constant.actualPostId, currentUser!!.uid,modifiedPost.text.toString())
+        Constant.actualPostId = ""
+
+        val intent = Intent(this, ProfileActivity::class.java)
         startActivity(intent)
 
 
