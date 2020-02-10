@@ -1,11 +1,13 @@
 package fr.isen.lopez.socialapplication
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.Window
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import fr.isen.lopez.androidtoolbox.PostAdapter
@@ -41,6 +43,8 @@ class HomeActivity : AppCompatActivity() {
         super.onStart()
 
     }
+
+
      @RequiresApi(Build.VERSION_CODES.O)
     public fun publish(view: View){
 

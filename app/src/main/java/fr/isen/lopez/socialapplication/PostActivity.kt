@@ -15,6 +15,8 @@ class PostActivity : AppCompatActivity() {
 
     var postId: String? = ""
     var name_string: String? = ""
+    var numberlike: String? = ""
+
 
 
     public fun switchPageProfile(view: View){
@@ -44,7 +46,10 @@ class PostActivity : AppCompatActivity() {
         var post = PostModel()
         postId = intent.getStringExtra("idPost") //ID DU POST
         name_string = intent.getStringExtra("name_string") //ID DU POST
+        numberlike = intent.getStringExtra("numberlike")
         name_text.text = name_string
+        number_like_post.text = numberlike
+
         Log.d("IDdupost",postId)
         val read = ReadData()
         val write = WriteData()
