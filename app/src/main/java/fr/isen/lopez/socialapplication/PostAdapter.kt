@@ -49,9 +49,9 @@ class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): Recycl
     class PostViewHolder(val view: View,val context: Context): RecyclerView.ViewHolder(view) {
         fun bind(post: PostModel) {
             view.postDisplayContentView.text = post.text
+            Toast.makeText(context,post.id_post.toString(),Toast.LENGTH_SHORT).show()
 
             view.button_comment.setOnClickListener {
-                Toast.makeText(context,post.id_post,Toast.LENGTH_SHORT).show()
                // val i = adapterPosition
 
                 val foo = Intent(context, PostActivity::class.java)

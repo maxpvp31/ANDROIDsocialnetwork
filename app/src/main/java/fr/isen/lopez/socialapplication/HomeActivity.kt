@@ -30,6 +30,10 @@ class HomeActivity : AppCompatActivity() {
         Constant.justDisconnected = true
     }
 
+    override fun onStart() {
+        super.onStart()
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,11 +44,11 @@ class HomeActivity : AppCompatActivity() {
         val write = WriteData()
         Constant.justDisconnected = false
 
-        postList = read.ReadPosts()
+       read.ReadPosts{
+           postList = it
+           postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+           postRecyclerView.adapter = PostAdapter(postList,this)}
 
-
-        postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        postRecyclerView.adapter = PostAdapter(postList,this)
 
     }
 

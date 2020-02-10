@@ -4,7 +4,7 @@ import com.google.firebase.database.PropertyName
 
 
 data class PostModel(
-    @PropertyName("id") val id_post: String?,
+    @PropertyName("id_post") val id_post: String?,
     @PropertyName("text") val text: String?,
     @PropertyName("img") val img: String?,
     @PropertyName("date") val date : String?,
