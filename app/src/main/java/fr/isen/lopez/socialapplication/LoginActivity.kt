@@ -13,27 +13,11 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
-    val trueId = "admin"
-    var truePassword = "123"
-    var userPref: SharedPreferences? = null
-    val UserInfos= "UserInfos"
-    val kPassword = "kpassword"
-    val kIdentifier = "kidentifier"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        /*
-        userPref = getSharedPreferences(UserInfos, 0)
-        val checkId = userPref?.getString(kPassword, null) ?: ""
-        val checkPassword = userPref?.getString( kIdentifier, null) ?: ""
-
-
-        if(canLog(checkId,checkPassword)){
-            val intent = Intent(this,HomeActivity::class.java)
-            startActivity(intent);
-        }
-        */
         mAuth = FirebaseAuth.getInstance();
 
 

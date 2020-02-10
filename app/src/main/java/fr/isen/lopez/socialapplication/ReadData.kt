@@ -99,7 +99,7 @@ class ReadData {
 
     fun getPost(post_id : String?,  callback: (PostModel) -> Unit ){
         var post : PostModel = PostModel()
-        val myRef = database.getReference("Post")
+        val myRef = database.getReference("Posts")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (value in dataSnapshot.children){
@@ -175,18 +175,19 @@ class ReadData {
 
                     }
                 }
+                callback.invoke(user)
+
             }
             override fun onCancelled(error: DatabaseError) {
 
                 Log.w(ReadData.TAG, "Failed to read value.", error.toException())
             }
         })
-        callback.invoke(user)
 
     }
 
 
-    fun NumberLikeOnPost(post_id: String) : Int{
+    fun NumberLikeOnPost(post_id: String, callback: (Int) -> Unit){
 
         var numberlike : Int = 0
         val myRef = database.getReference("Posts")
@@ -196,18 +197,19 @@ class ReadData {
 
                     if(value.key.equals(post_id)){
 
-                        var  post  = value.getValue(PostModel::class.java)
-                        numberlike = post!!.likes!!.size
+                        var  post  = value.getValue(PostModel::class.java)!!
+                        numberlike = post.likes!!.size
 
                     }
                 }
+                callback.invoke(numberlike)
+
             }
             override fun onCancelled(error: DatabaseError) {
 
                 Log.w(ReadData.TAG, "Failed to read value.", error.toException())
             }
         })
-        return numberlike
     }
 
     fun NumberCommentOnPost(post_id: String) : Int{
@@ -220,8 +222,8 @@ class ReadData {
 
                     if(value.key.equals(post_id)){
 
-                        var post = value.getValue(PostModel::class.java)
-                        numbercomment = post!!.comments!!.size
+                        var post = value.getValue(PostModel::class.java)!!
+                        numbercomment = post.comments!!.size
 
                     }
                 }

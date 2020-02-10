@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import fr.isen.lopez.androidtoolbox.PostAdapter
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
+
+
 
     public fun switchPageProfile(view: View){
 
@@ -38,15 +41,36 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var postList = ArrayList<PostModel>()
         setContentView(R.layout.activity_home)
+
+        var postList = ArrayList<PostModel>()
+        var userListPost = ArrayList<UserModel>()
+        var likePost = ArrayList<String>()
         val read = ReadData()
+        val read_user = ReadData()
+
         val write = WriteData()
 
-       read.ReadPosts{
-           postList = it
-           postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-           postRecyclerView.adapter = PostAdapter(postList,this)}
+        read.ReadPosts {
+            postList = it
+            for(value in postList){
+                Log.d("UserId", value.user_id.toString())
+                read_user.getUser(value.user_id){
+                    Log.d("tdest","tstddddddddddddddddddddddd")
+                    userListPost.add(it)
+                    Log.d("TEST", it.nom.toString())
+                    read_user.NumberLikeOnPost(value.id_post.toString()){
+                        val number_like = (it-1).toString()
+                        likePost.add(number_like)
+                        postRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                        postRecyclerView.adapter = PostAdapter(likePost, userListPost, postList, this)
+                    }
+                }
+            }
+
+
+        }
+
 
 
     }

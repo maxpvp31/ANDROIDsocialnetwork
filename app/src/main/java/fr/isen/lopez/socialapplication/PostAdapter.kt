@@ -10,27 +10,18 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.lopez.socialapplication.HomeActivity
-import fr.isen.lopez.socialapplication.PostActivity
-import fr.isen.lopez.socialapplication.PostModel
-import fr.isen.lopez.socialapplication.R
 import kotlinx.android.synthetic.main.recycler_view_post_cell.view.*
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.ContextCompat.startActivity
+import fr.isen.lopez.socialapplication.*
 
 
-
-
-
-
-
-class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
-
+class PostAdapter (val number_like: ArrayList<String>, val userListPost: ArrayList<UserModel> ,val posts: ArrayList<PostModel>,val context: Context): RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_post_cell, parent, false)
-        return PostViewHolder(view, context)
+        return PostViewHolder(number_like, userListPost, view, context)
     }
 
     override fun getItemCount(): Int {
@@ -39,20 +30,19 @@ class PostAdapter (val posts: ArrayList<PostModel>,val context: Context): Recycl
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = posts[position]
-        holder.bind(post)
+        holder.bind(post, position)
 
 
     }
 
 
 
-    class PostViewHolder(val view: View,val context: Context): RecyclerView.ViewHolder(view) {
-        fun bind(post: PostModel) {
+    class PostViewHolder(val number_like: ArrayList<String>, val userListPost: ArrayList<UserModel> ,val view: View,val context: Context): RecyclerView.ViewHolder(view) {
+        fun bind(post: PostModel,postition: Int) {
             view.postDisplayContentView.text = post.text
-            Toast.makeText(context,post.id_post.toString(),Toast.LENGTH_SHORT).show()
-
+            view.name_surname.text = userListPost[postition].nom + " " + userListPost[postition].prenom
+            view.like_number.text = number_like[postition]
             view.button_comment.setOnClickListener {
-               // val i = adapterPosition
 
                 val foo = Intent(context, PostActivity::class.java)
                 foo.putExtra("idPost", post.id_post)
