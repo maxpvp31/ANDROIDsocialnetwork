@@ -41,7 +41,11 @@ class PostActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         postId = intent.getStringExtra("idPost") //ID DU POST
-        //Log.d("IDdupost",postId)
+        Log.d("IDdupost",postId)
+        val read = ReadData()
+        val write = WriteData()
+
+        
 
     }
 }

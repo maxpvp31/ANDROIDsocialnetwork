@@ -30,8 +30,7 @@ class ReadData {
                     getUser(post.user_id){
                         user = it
                     }
-                    Log.d(ReadData.TAG, user.toString())
-                  posts.add(post)
+                    posts.add(post)
                     userarray.add(user!!)
 
 
